@@ -6,7 +6,7 @@ from address_detection import *
 
 app = Flask(__name__)
 
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'uploads_folder'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
@@ -36,11 +36,11 @@ def upload_file():
         # addresses, scores = extract_address_using_bert(subtexts)
 
         addresses, scores = process_subtexts(subtexts)
-        print(addresses)
+        # print(addresses)
 
         end_time = time.time()  # Enregistrez le temps de fin
         processing_time = end_time - start_time 
-        print(processing_time)
+        # print(processing_time)
 
 
         result_data = zip(addresses, scores)
@@ -50,5 +50,5 @@ def upload_file():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=8080, debug=True)
 

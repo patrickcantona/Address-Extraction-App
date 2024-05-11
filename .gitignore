@@ -1,1 +1,4 @@
-adressapp-env/
+address-app-env/
+uploads_folder/
+trash.py
+__pycache__/

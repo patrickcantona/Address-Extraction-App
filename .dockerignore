@@ -1,0 +1,15 @@
+# Ignore address-app-env folder
+address-app-env/
+
+# Ignore uploads_folder folder
+uploads_folder/
+
+# Ignore trash.py file
+trash.py
+
+# Ignore __pycache__ folder
+__pycache__/
+
+# Ignore  README.md file
+
+README.md

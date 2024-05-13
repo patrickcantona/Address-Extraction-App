@@ -13,6 +13,7 @@ from docx import Document
 
 
 def extract_text_from_image(file_path):
+    """Extract text from image using Tesseract OCR"""
     try:
         with Image.open(file_path) as img:
             text = pytesseract.image_to_string(img, lang='fra')
@@ -22,6 +23,7 @@ def extract_text_from_image(file_path):
         return ""
 
 def is_pdf_scanned(file_path):
+    """Check if a PDF file is scanned or not by checking if the first page is empty or not"""
     with open(file_path, 'rb') as file:
         pdf_reader = PdfReader(file)
         if len(pdf_reader.pages) > 0:
@@ -32,6 +34,7 @@ def is_pdf_scanned(file_path):
     return False
 
 def extract_text_from_pdf(file_path):
+    """Extract text from PDF using PyMuPDF library"""
     text = ''
     with open(file_path, 'rb') as file:
         pdf_reader = PdfReader(file)
@@ -45,10 +48,11 @@ def extract_text_from_pdf(file_path):
     return text
 
 def extract_text_from_pdf_ocr(file_path):
+    """Extract text from scanned PDF using Tesseract OCR"""
     document = fitz.open(file_path)
     text = []
 
-    # Boucle à travers les 8 premières pages ou moins si le document a moins de 8 pages
+    # Process the first 6 pages only
     for page_num in range(min(6, document.page_count)):
         current_page = document.load_page(page_num)
         resolution = 300
@@ -68,11 +72,13 @@ def extract_text_from_pdf_ocr(file_path):
 
 
 def read_docx(docx_path):
+    """Read text from a DOCX file"""
     text = docx2txt.process(docx_path)
     text = re.sub(r'\s+', ' ', text)
     return text
 
 def text_from_any_documents(file_path):
+    """Extract text from any type of document (PDF, DOCX, Image)"""
 
     extension = os.path.splitext(file_path)[-1].lower()
 
@@ -95,6 +101,7 @@ def text_from_any_documents(file_path):
         return None
 
 def split_text(text, words_per_subtext, word_overlap):
+    """Split the text into subtexts with a certain number of words and overlap"""
     words = text.split()
     subtexts = []
 

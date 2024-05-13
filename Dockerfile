@@ -9,8 +9,10 @@ COPY requirements.txt .
 
 # Install the Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
-# Install PyTorch
-RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# Install PyTorch with caching
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
 
 # Copy the rest of the application code into the container
 COPY . .

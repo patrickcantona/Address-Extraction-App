@@ -4,7 +4,7 @@ import time
 from text_extraction import *
 from address_detection import *
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../templates')
 
 UPLOAD_FOLDER = 'uploads_folder'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER

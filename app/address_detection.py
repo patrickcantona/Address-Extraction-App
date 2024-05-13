@@ -11,6 +11,7 @@ ner = pipeline(
 )
 
 def extract_address_using_bert(text):
+    """This function extracts addresses from the text using BERT model"""
     if text is None or "":
         return None , None
     else:
@@ -19,6 +20,7 @@ def extract_address_using_bert(text):
     return address , score 
 
 def process_subtexts(subtexts):
+    """This function processes subtexts and extracts addresses using BERT model"""
     addresses = []
     scores = []
 
